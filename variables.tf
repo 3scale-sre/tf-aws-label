@@ -1,25 +1,25 @@
-variable "namespace" {
+variable "project" {
   type        = string
   default     = ""
-  description = "Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp'"
+  description = "Project name: eng/saas"
 }
 
 variable "environment" {
   type        = string
   default     = ""
-  description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
+  description = "Environment: pro/stg/dev"
 }
 
-variable "stage" {
+variable "workload" {
   type        = string
   default     = ""
-  description = "Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release'"
+  description = "Solution name: system/zync/backend/keycloak/apicast/apicurio"
 }
 
-variable "name" {
+variable "type" {
   type        = string
   default     = ""
-  description = "Solution name, e.g. 'app' or 'jenkins'"
+  description = "Abreviated resource type: i, sg, vpc, rt, s3, rds, es, ec ..."
 }
 
 variable "enabled" {
@@ -40,6 +40,12 @@ variable "attributes" {
   description = "Additional attributes (e.g. `1`)"
 }
 
+variable "tf_config" {
+  type        = string
+  default     = ""
+  description = "The Terraform Config that owns the resource"
+}
+
 variable "tags" {
   type        = map(string)
   default     = {}
@@ -54,12 +60,14 @@ variable "additional_tag_map" {
 
 variable "context" {
   type = object({
-    namespace           = string
-    environment         = string
-    stage               = string
-    name                = string
+    environment = string
+    project     = string
+    workload    = string
+    type        = string
+
     enabled             = bool
     delimiter           = string
+    tf_config           = string
     attributes          = list(string)
     label_order         = list(string)
     tags                = map(string)
@@ -67,12 +75,14 @@ variable "context" {
     regex_replace_chars = string
   })
   default = {
-    namespace           = ""
-    environment         = ""
-    stage               = ""
-    name                = ""
+    environment = ""
+    project     = ""
+    workload    = ""
+    type        = ""
+
     enabled             = true
     delimiter           = ""
+    tf_config           = ""
     attributes          = []
     label_order         = []
     tags                = {}
@@ -91,6 +101,6 @@ variable "label_order" {
 variable "regex_replace_chars" {
   type        = string
   default     = "/[^a-zA-Z0-9-]/"
-  description = "Regex to replace chars with empty string in `namespace`, `environment`, `stage` and `name`. By default only hyphens, letters and digits are allowed, all other chars are removed"
+  description = "Regex to replace chars with empty string in `project`, `environment` and `workload`. By default only hyphens, letters and digits are allowed, all other chars are removed"
 }
 

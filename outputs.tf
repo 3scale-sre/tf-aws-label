@@ -3,24 +3,24 @@ output "id" {
   description = "Disambiguated ID"
 }
 
-output "name" {
-  value       = local.enabled ? local.name : ""
-  description = "Normalized name"
+output "workload" {
+  value       = local.enabled ? local.workload : ""
+  description = "Normalized workload"
 }
 
-output "namespace" {
-  value       = local.enabled ? local.namespace : ""
-  description = "Normalized namespace"
-}
-
-output "stage" {
-  value       = local.enabled ? local.stage : ""
-  description = "Normalized stage"
+output "project" {
+  value       = local.enabled ? local.project : ""
+  description = "Normalized project"
 }
 
 output "environment" {
   value       = local.enabled ? local.environment : ""
   description = "Normalized environment"
+}
+
+output "type" {
+  value       = local.enabled ? local.type : ""
+  description = "Normalized resource type"
 }
 
 output "attributes" {
@@ -30,7 +30,7 @@ output "attributes" {
 
 output "delimiter" {
   value       = local.enabled ? local.delimiter : ""
-  description = "Delimiter between `namespace`, `environment`, `stage`, `name` and `attributes`"
+  description = "Delimiter between `project`, `environment`, `workload`, `type` and `attributes`"
 }
 
 output "tags" {
