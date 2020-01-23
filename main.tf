@@ -20,7 +20,7 @@ locals {
   workload           = lower(replace(coalesce(var.workload, var.context.workload, local.defaults.sentinel), local.regex_replace_chars, local.defaults.replacement))
   type               = lower(replace(coalesce(var.type, var.context.type, local.defaults.sentinel), local.regex_replace_chars, local.defaults.replacement))
   delimiter          = coalesce(var.delimiter, var.context.delimiter, local.defaults.delimiter)
-  tf_config          = coalesce(var.tf_config, var.context.tf_config, local.defaults.tf_config)
+  tf_config          = replace(coalesce(var.tf_config, var.context.tf_config, local.defaults.sentinel), local.regex_replace_chars, local.defaults.replacement)
   label_order        = length(var.label_order) > 0 ? var.label_order : (length(var.context.label_order) > 0 ? var.context.label_order : local.defaults.label_order)
   additional_tag_map = merge(var.context.additional_tag_map, var.additional_tag_map)
 
