@@ -101,6 +101,6 @@ variable "label_order" {
 variable "regex_replace_chars" {
   type        = string
   default     = "/[^a-zA-Z0-9-.]/"
-  description = "Regex to replace chars with empty string in `project`, `environment` and `workload`. By default only hyphens, letters and digits are allowed, all other chars are removed"
+  description = "Regex to replace chars with empty string in `project`, `environment` and `workload`. By default only hyphens, letters, digits and dots are allowed, all other chars are removed"
 }
 
